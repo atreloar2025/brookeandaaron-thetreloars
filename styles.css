@@ -10,20 +10,18 @@
 }
 
 :root {
-  --cream:       #faf7f2;
-  --warm:        #f0e8d8;
-  --blush:       #d4a5a5;
-  --sage:        #8a9e8a;
-  --charcoal:    #2e2e2e;
-  --gold:        #b89a6a;
-  --light-text:  #7a7068;
-  --terra-cotta: #c1654a;
-  --cocoa:       #6b4226;
+  --cream:        #faf7f2;
+  --warm:         #f0e8d8;
+  --blush:        #d4a5a5;
+  --sage:         #8a9e8a;
+  --charcoal:     #2e2e2e;
+  --gold:         #b89a6a;
+  --light-text:   #7a7068;
+  --terra-cotta:  #c1654a;
+  --cocoa:        #6b4226;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Jost', sans-serif;
@@ -32,11 +30,15 @@ body {
   font-weight: 300;
 }
 
-/* ── NAV ──────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════
+   NAV
+══════════════════════════════════════════════════════════ */
 nav {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   background: rgba(250, 247, 242, 0.93);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(193, 101, 74, 0.2);
@@ -79,32 +81,19 @@ nav {
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 1px;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
   background: var(--terra-cotta);
   transition: width 0.3s ease;
 }
 
-.nav-links a:hover {
-  color: var(--terra-cotta);
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
+.nav-links a:hover { color: var(--terra-cotta); }
+.nav-links a:hover::after { width: 100%; }
 
 /* ── HOME DROPDOWN ───────────────────────────────────────── */
-.nav-dropdown {
-  position: relative;
-}
+.nav-dropdown { position: relative; }
+.nav-dropdown-toggle { cursor: pointer; }
 
-.nav-dropdown-toggle {
-  cursor: pointer;
-}
-
-/* Hidden by default, appears on hover */
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -134,188 +123,185 @@ nav {
   color: var(--terra-cotta);
 }
 
-/* No underline animation inside the dropdown */
-.dropdown-menu li a::after {
-  display: none;
-}
+.dropdown-menu li a::after { display: none; }
+.nav-dropdown:hover .dropdown-menu { display: block; }
 
-/* Show on hover */
-.nav-dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-/* ── RSVP BUTTON IN NAV ──────────────────────────────────── */
+/* ── RSVP BUTTON ─────────────────────────────────────────── */
 .nav-rsvp {
   padding: 0.45rem 1.2rem !important;
   border: 1px solid var(--terra-cotta);
   color: var(--terra-cotta) !important;
   transition: background 0.25s, color 0.25s !important;
 }
+.nav-rsvp:hover { background: var(--terra-cotta); color: var(--cream) !important; }
+.nav-rsvp::after { display: none !important; }
 
-.nav-rsvp:hover {
-  background: var(--terra-cotta);
-  color: var(--cream) !important;
-}
 
-.nav-rsvp::after {
-  display: none !important;
-}
-
-/* ── HERO ──────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════
+   HERO — FULLSCREEN SLIDESHOW
+══════════════════════════════════════════════════════════ */
 .hero {
   position: relative;
-  min-height: 92vh;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  background: var(--warm);
 }
 
-.hero::before {
-  content: '';
+/* ── SLIDESHOW TRACK ─────────────────────────────────────── */
+.slideshow {
   position: absolute;
   inset: 0;
-  background-image:
-    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(193,101,74,0.10) 0%, transparent 70%),
-    radial-gradient(ellipse 30% 60% at 10% 80%, rgba(107,66,38,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 25% 40% at 90% 15%, rgba(184,154,106,0.10) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-/* ── HERO PHOTO GRID ─────────────────────────────────────── */
-.hero-photo-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.6fr 1fr;
-  grid-template-rows: 400px 400px;
-  gap: 12px;
-  width: min(900px, 90vw);
-  margin-bottom: 3rem;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 1s 0.3s forwards;
-}
-
-.hero-photo-grid .photo-slot {
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(193, 101, 74, 0.25);
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: var(--light-text);
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;
+  height: 100%;
 }
 
-.hero-photo-grid .photo-slot:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(107, 66, 38, 0.12);
-}
-
-/* Center/tall slot */
-.hero-photo-grid .photo-slot:nth-child(2) {
-  grid-row: span 2;
-}
-
-.photo-slot svg {
-  width: 32px;
-  height: 32px;
-  opacity: 0.4;
-}
-
-/* Fills the slot — crops to cover, no stretching */
-.photo-slot img {
+.slide {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.slide.active { opacity: 1; }
+
+.slide img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center center;
-  display: block;
 }
 
-/* Top left — shift down to show faces and dog */
-.hero-photo-grid .photo-slot:nth-child(1) img {
-  object-position: center 80%;
-}
-
-/* Center tall — shift right to show both faces */
-.hero-photo-grid .photo-slot:nth-child(2) img {
-  object-position: 70% 60%;
-}
-
-/* Top right — shift up slightly to show full bodies */
-.hero-photo-grid .photo-slot:nth-child(3) img {
-  object-position: center 40%;
-}
-
-/* Bottom left */
-.hero-photo-grid .photo-slot:nth-child(4) img {
-  object-position: center center;
-}
-
-/* Bottom right */
-.hero-photo-grid .photo-slot:nth-child(5) img {
-  object-position: center center;
-}
-
-/* Hide placeholder icon/label once a real image is loaded */
-.photo-slot img[src]:not([src=""]) ~ svg,
-.photo-slot img[src]:not([src=""]) ~ span {
-  display: none;
+/* Dark overlay so text is readable */
+.slideshow-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.25) 0%,
+    rgba(0,0,0,0.45) 100%
+  );
+  z-index: 1;
 }
 
 /* ── HERO TEXT ───────────────────────────────────────────── */
 .hero-text {
+  position: relative;
+  z-index: 2;
   text-align: center;
-  opacity: 0;
-  transform: translateY(16px);
-  animation: fadeUp 1s 0.8s forwards;
+  color: var(--cream);
+  padding: 0 2rem;
+  margin-top: 64px; /* offset for fixed nav */
+  animation: fadeUp 1.2s 0.5s both;
 }
 
 .hero-eyebrow {
-  font-size: 0.68rem;
-  letter-spacing: 0.3em;
+  font-size: 0.72rem;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--sage);
-  margin-bottom: 0.75rem;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 1rem;
 }
 
 .hero-names {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(3.5rem, 9vw, 7rem);
   font-weight: 300;
   font-style: italic;
   line-height: 1.05;
-  color: var(--charcoal);
-  letter-spacing: -0.01em;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
 }
 
-.hero-names span {
-  color: var(--terra-cotta);
-}
+.hero-names span { color: #f0c4a0; }
 
 .hero-date {
-  margin-top: 1rem;
-  font-size: 0.78rem;
-  letter-spacing: 0.2em;
+  margin-top: 1.2rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--cocoa);
-  opacity: 0.75;
+  color: rgba(255,255,255,0.8);
 }
 
-/* ── SECTIONS ────────────────────────────────────────────── */
+/* Slide indicator dots */
+.slide-dots {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+}
+
+.slide-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: background 0.3s;
+  border: none;
+  padding: 0;
+}
+
+.slide-dot.active { background: #fff; }
+
+
+/* ══════════════════════════════════════════════════════════
+   BLURRED COLLAGE BACKGROUND
+   Sits behind all content sections below the hero
+══════════════════════════════════════════════════════════ */
+.collage-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 50vh);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.collage-bg.visible { opacity: 1; }
+
+.collage-bg-slot {
+  overflow: hidden;
+}
+
+.collage-bg-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: blur(18px) brightness(0.55) saturate(0.8);
+  transform: scale(1.1); /* prevents blur edge artifacts */
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   CONTENT SECTIONS
+   Sit on top of the blurred collage background
+══════════════════════════════════════════════════════════ */
+.content-wrap {
+  position: relative;
+  z-index: 10;
+}
+
 section {
   padding: 6rem 2rem;
   max-width: 860px;
   margin: 0 auto;
+  background: rgba(250, 247, 242, 0.88);
+  backdrop-filter: blur(2px);
+  border-radius: 2px;
+  margin-bottom: 2rem;
 }
 
 .section-label {
@@ -345,8 +331,7 @@ section {
   margin-bottom: 2rem;
 }
 
-.divider::before,
-.divider::after {
+.divider::before, .divider::after {
   content: '';
   flex: 1;
   height: 1px;
@@ -354,15 +339,8 @@ section {
   opacity: 0.35;
 }
 
-.divider::after {
-  background: linear-gradient(to left, transparent, var(--cocoa));
-  opacity: 0.35;
-}
-
-.divider-icon {
-  color: var(--terra-cotta);
-  font-size: 1.1rem;
-}
+.divider::after { background: linear-gradient(to left, transparent, var(--cocoa)); }
+.divider-icon { color: var(--terra-cotta); font-size: 1.1rem; }
 
 /* ── INTRO BODY ──────────────────────────────────────────── */
 .intro-body {
@@ -372,11 +350,9 @@ section {
   font-weight: 300;
 }
 
-.intro-body p + p {
-  margin-top: 1.4em;
-}
+.intro-body p + p { margin-top: 1.4em; }
 
-/* ── PLACEHOLDER SECTIONS ────────────────────────────────── */
+/* ── PLACEHOLDER ─────────────────────────────────────────── */
 .placeholder-section {
   background: rgba(255, 255, 255, 0.5);
   border: 1px dashed rgba(193, 101, 74, 0.3);
@@ -389,9 +365,7 @@ section {
 }
 
 /* ── VENUE SECTION ───────────────────────────────────────── */
-#venue {
-  max-width: 1000px;
-}
+#venue { max-width: 1000px; }
 
 .venue-info {
   background: rgba(255, 255, 255, 0.5);
@@ -412,10 +386,7 @@ section {
   gap: 10px;
 }
 
-/* First photo spans 2 columns — the hero venue shot */
-.venue-photo-grid .venue-slot:first-child {
-  grid-column: span 2;
-}
+.venue-photo-grid .venue-slot:first-child { grid-column: span 2; }
 
 .venue-slot {
   background: rgba(107, 66, 38, 0.05);
@@ -439,11 +410,7 @@ section {
   box-shadow: 0 10px 24px rgba(107, 66, 38, 0.10);
 }
 
-.venue-slot svg {
-  width: 28px;
-  height: 28px;
-  opacity: 0.35;
-}
+.venue-slot svg { width: 28px; height: 28px; opacity: 0.35; }
 
 .venue-slot img {
   position: absolute;
@@ -456,9 +423,7 @@ section {
 }
 
 .venue-slot img[src]:not([src=""]) ~ svg,
-.venue-slot img[src]:not([src=""]) ~ span {
-  display: none;
-}
+.venue-slot img[src]:not([src=""]) ~ span { display: none; }
 
 /* ── BACK TO TOP ─────────────────────────────────────────── */
 #back-to-top {
@@ -479,10 +444,7 @@ section {
   text-decoration: none;
 }
 
-#back-to-top:hover {
-  background: var(--terra-cotta);
-  color: var(--cream);
-}
+#back-to-top:hover { background: var(--terra-cotta); color: var(--cream); }
 
 /* ── FOOTER ──────────────────────────────────────────────── */
 footer {
@@ -494,14 +456,15 @@ footer {
   color: var(--cocoa);
   text-transform: uppercase;
   opacity: 0.75;
+  position: relative;
+  z-index: 10;
+  background: var(--cream);
 }
 
 /* ── ANIMATIONS ──────────────────────────────────────────── */
 @keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ── RESPONSIVE ──────────────────────────────────────────── */
@@ -509,19 +472,14 @@ footer {
   .nav-links { gap: 1rem; }
   .nav-links a { font-size: 0.62rem; letter-spacing: 0.08em; }
 
-  .hero-photo-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 160px 160px 160px;
-  }
-  .hero-photo-grid .photo-slot:nth-child(2) {
-    grid-row: span 1;
+  .collage-bg {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 33.33vh);
   }
 
   .venue-photo-grid {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 160px 160px 160px;
   }
-  .venue-photo-grid .venue-slot:first-child {
-    grid-column: span 2;
-  }
+  .venue-photo-grid .venue-slot:first-child { grid-column: span 2; }
 }

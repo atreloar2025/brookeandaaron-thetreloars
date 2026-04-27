@@ -14,10 +14,7 @@
   ══════════════════════════════════════════ -->
   <nav>
     <span class="nav-monogram">A &amp; B</span>
-
     <ul class="nav-links">
-
-      <!-- HOME dropdown -->
       <li class="nav-dropdown">
         <a href="#top" class="nav-dropdown-toggle">Home ▾</a>
         <ul class="dropdown-menu">
@@ -28,226 +25,211 @@
           <li><a href="#photos">Photos</a></li>
         </ul>
       </li>
-
-      <!-- RSVP — no dropdown -->
       <li><a href="#rsvp" class="nav-rsvp">RSVP</a></li>
-
     </ul>
   </nav>
 
   <!-- ══════════════════════════════════════════
-       HERO / HEADER
+       BLURRED COLLAGE BACKGROUND
+       Shown behind content sections on scroll
   ══════════════════════════════════════════ -->
-  <header class="hero">
+  <div class="collage-bg" id="collageBg">
+    <!--
+      These 6 slots tile the entire screen with your photos,
+      blurred and darkened so content stays readable.
+      Add/change images here to update the background collage.
+    -->
+    <div class="collage-bg-slot"><img src="brookeaarontopleft.jpg"     alt="" /></div>
+    <div class="collage-bg-slot"><img src="brookeaaroncenter.jpg"      alt="" /></div>
+    <div class="collage-bg-slot"><img src="brookeaarontopright.jpg"    alt="" /></div>
+    <div class="collage-bg-slot"><img src="brookeaaronbottomleft.jpg"  alt="" /></div>
+    <div class="collage-bg-slot"><img src="brookeaaroncenter.jpg"      alt="" /></div>
+    <div class="collage-bg-slot"><img src="brookeaaronbottomright.jpg" alt="" /></div>
+  </div>
 
-    <div class="hero-photo-grid">
+  <!-- ══════════════════════════════════════════
+       HERO — FULLSCREEN SLIDESHOW
+  ══════════════════════════════════════════ -->
+  <header class="hero" id="hero">
 
-      <!-- Slot 1 — top left -->
-      <div class="photo-slot">
-        <img src="brookeaarontopleft.jpg" alt="Top Left" />
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <rect x="3" y="3" width="18" height="18" rx="1"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        <span>Add Photo</span>
+    <!-- Slideshow — photos rotate every 4 seconds -->
+    <div class="slideshow" id="slideshow">
+      <!--
+        Each .slide holds one photo fullscreen.
+        Add more slides by copying a .slide div and changing the src.
+        Photos fill the screen edge to edge with object-fit: cover.
+      -->
+      <div class="slide active">
+        <img src="brookeaarontopleft.jpg" alt="Aaron and Brooke" />
       </div>
-
-      <!-- Slot 2 — center tall -->
-      <div class="photo-slot">
-        <img src="brookeaaroncenter.jpg" alt="Main Photo" />
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <rect x="3" y="3" width="18" height="18" rx="1"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        <span>Main Photo</span>
+      <div class="slide">
+        <img src="brookeaaroncenter.jpg" alt="Aaron and Brooke" />
       </div>
-
-      <!-- Slot 3 — top right -->
-      <div class="photo-slot">
-        <img src="brookeaarontopright.jpg" alt="Top Right" />
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <rect x="3" y="3" width="18" height="18" rx="1"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        <span>Add Photo</span>
+      <div class="slide">
+        <img src="brookeaarontopright.jpg" alt="Aaron and Brooke" />
       </div>
-
-      <!-- Slot 4 — bottom left -->
-      <div class="photo-slot">
-        <img src="brookeaaronbottomleft.jpg" alt="Bottom Left" />
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <rect x="3" y="3" width="18" height="18" rx="1"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        <span>Add Photo</span>
+      <div class="slide">
+        <img src="brookeaaronbottomleft.jpg" alt="Aaron and Brooke" />
       </div>
-
-      <!-- Slot 5 — bottom right -->
-      <div class="photo-slot">
-        <img src="brookeandaaronbottomright_new.jpeg" alt="Bottom Right" />
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <rect x="3" y="3" width="18" height="18" rx="1"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        <span>Add Photo</span>
+      <div class="slide">
+        <img src="brookeaaronbottomright.jpg" alt="Aaron and Brooke" />
       </div>
-
     </div>
 
-    <!-- Names & Date -->
+    <!-- Dark overlay -->
+    <div class="slideshow-overlay"></div>
+
+    <!-- Names & Date over the slideshow -->
     <div class="hero-text">
       <p class="hero-eyebrow">We're getting married</p>
-      <h1 class="hero-names">
-        Aaron <span>&amp;</span> Brooke
-      </h1>
+      <h1 class="hero-names">Aaron <span>&amp;</span> Brooke</h1>
       <p class="hero-date">April 24, 2027 &nbsp;·&nbsp; Santa Barbara, California</p>
     </div>
+
+    <!-- Dot indicators -->
+    <div class="slide-dots" id="slideDots"></div>
 
   </header>
 
   <!-- ══════════════════════════════════════════
-       ABOUT / INTRODUCTION
+       CONTENT SECTIONS
   ══════════════════════════════════════════ -->
-  <section id="about">
-    <span class="section-label">Our Story</span>
-    <h2 class="section-title">Welcome to our Celebration</h2>
-    <div class="divider"><span class="divider-icon">✦</span></div>
-    <div class="intro-body">
-      <p>
-        We are so thrilled to share this special moment with the people who mean the most to us.
-        This is where you'll find everything you need to know about our big day — from the venue
-        and schedule to registry details and photos along the way. This site will be updated accordingly.
-      </p>
-    </div>
-  </section>
+  <div class="content-wrap">
 
-  <!-- ══════════════════════════════════════════
-       VENUE
-  ══════════════════════════════════════════ -->
-  <section id="venue">
-    <span class="section-label">On the beaches of Santa Barbara</span>
-    <h2 class="section-title">Cabrillo Pavilion</h2>
-    <div class="divider"><span class="divider-icon">✦</span></div>
-
-    <div class="venue-info">
-      1118 E Cabrillo Blvd, Santa Barbara, CA 93103 &nbsp;//&nbsp; On-Site Public Parking Available!
-    </div>
-
-    <div class="venue-photo-grid">
-
-      <div class="venue-slot">
-        <img src="cabrillo2.jpg" alt="Cabrillo Pavilion exterior from the beach" />
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <rect x="3" y="3" width="18" height="18" rx="1"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        <span>Venue — Main View</span>
+    <section id="about">
+      <span class="section-label">Our Story</span>
+      <h2 class="section-title">Welcome to our Celebration</h2>
+      <div class="divider"><span class="divider-icon">✦</span></div>
+      <div class="intro-body">
+        <p>
+          We are so thrilled to share this special moment with the people who mean the most to us.
+          This is where you'll find everything you need to know about our big day — from the venue
+          and schedule to registry details and photos along the way. This site will be updated accordingly.
+        </p>
       </div>
+    </section>
 
-      <div class="venue-slot">
-        <img src="cabrillo1.jpg" alt="Cabrillo Pavilion ballroom interior" />
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <rect x="3" y="3" width="18" height="18" rx="1"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        <span>Ballroom Interior</span>
+    <section id="venue">
+      <span class="section-label">On the beaches of Santa Barbara</span>
+      <h2 class="section-title">Cabrillo Pavilion</h2>
+      <div class="divider"><span class="divider-icon">✦</span></div>
+      <div class="venue-info">
+        1118 E Cabrillo Blvd, Santa Barbara, CA 93103 &nbsp;//&nbsp; On-Site Public Parking Available!
       </div>
-
-      <div class="venue-slot">
-        <img src="cabrillo3.jpg" alt="Beachside Facade" />
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <rect x="3" y="3" width="18" height="18" rx="1"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        <span>Beachside Facade</span>
+      <div class="venue-photo-grid">
+        <div class="venue-slot">
+          <img src="cabrillo2.jpg" alt="Cabrillo Pavilion exterior from the beach" />
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Venue — Main View</span>
+        </div>
+        <div class="venue-slot">
+          <img src="cabrillo1.jpg" alt="Cabrillo Pavilion ballroom interior" />
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Ballroom Interior</span>
+        </div>
+        <div class="venue-slot">
+          <img src="cabrillo3.jpg" alt="Beachside Facade" />
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Beachside Facade</span>
+        </div>
+        <div class="venue-slot">
+          <img src="cabrillo4.jpg" alt="Oceanfront Patio" />
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Oceanfront Patio</span>
+        </div>
+        <div class="venue-slot">
+          <img src="cabrillo5.jpg" alt="Streetside Entrance" />
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Streetside Entrance</span>
+        </div>
       </div>
+    </section>
 
-      <div class="venue-slot">
-        <img src="cabrillo4.jpg" alt="Oceanfront Patio" />
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <rect x="3" y="3" width="18" height="18" rx="1"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        <span>Oceanfront Patio</span>
+    <section id="save-the-date">
+      <h2 class="section-title">Save the Date</h2>
+      <div class="divider"><span class="divider-icon">✦</span></div>
+      <div class="placeholder-section">
+        Our wedding will be at the Cabrillo Pavilion
       </div>
+    </section>
 
-      <div class="venue-slot">
-        <img src="cabrillo5.jpg" alt="Streetside Entrance" />
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <rect x="3" y="3" width="18" height="18" rx="1"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        <span>Streetside Entrance</span>
+    <section id="registry">
+      <h2 class="section-title">Wedding Registry</h2>
+      <div class="divider"><span class="divider-icon">✦</span></div>
+      <div class="placeholder-section">
+        Registry links will appear here!
       </div>
+    </section>
 
-    </div>
-  </section>
+    <section id="photos">
+      <h2 class="section-title">Photos</h2>
+      <div class="divider"><span class="divider-icon">✦</span></div>
+      <div class="placeholder-section">
+        Your photo gallery will go here — engagement photos, getting-ready shots, and wedding day memories.
+      </div>
+    </section>
 
-  <!-- ══════════════════════════════════════════
-       SAVE THE DATE
-  ══════════════════════════════════════════ -->
-  <section id="save-the-date">
-    <h2 class="section-title">Save the Date</h2>
-    <div class="divider"><span class="divider-icon">✦</span></div>
-    <div class="placeholder-section">
-      Our wedding will be at the Cabrillo Pavilion
-    </div>
-  </section>
+    <section id="rsvp">
+      <h2 class="section-title">RSVP</h2>
+      <div class="divider"><span class="divider-icon">✦</span></div>
+      <div class="placeholder-section">
+        RSVP form coming soon.
+      </div>
+    </section>
 
-  <!-- ══════════════════════════════════════════
-       WEDDING REGISTRY
-  ══════════════════════════════════════════ -->
-  <section id="registry">
-    <h2 class="section-title">Wedding Registry</h2>
-    <div class="divider"><span class="divider-icon">✦</span></div>
-    <div class="placeholder-section">
-      Registry links will appear here!
-    </div>
-  </section>
+    <a href="#top" id="back-to-top">↑ &nbsp; Back to Top</a>
 
-  <!-- ══════════════════════════════════════════
-       PHOTOS
-  ══════════════════════════════════════════ -->
-  <section id="photos">
-    <h2 class="section-title">Photos</h2>
-    <div class="divider"><span class="divider-icon">✦</span></div>
-    <div class="placeholder-section">
-      Your photo gallery will go here — engagement photos, getting-ready shots, and wedding day memories.
-    </div>
-  </section>
+  </div><!-- end .content-wrap -->
 
-  <!-- ══════════════════════════════════════════
-       REGISTRY
-  ══════════════════════════════════════════ -->
-  <section id="registry">
-    <h2 class="section-title">REGISTRY</h2>
-    <div class="divider"><span class="divider-icon">✦</span></div>
-    <div class="placeholder-section">
-      Registry form coming soon.
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════
-       BACK TO TOP
-  ══════════════════════════════════════════ -->
-  <a href="#top" id="back-to-top">↑ &nbsp; Back to Top</a>
-
-  <!-- ══════════════════════════════════════════
-       FOOTER
-  ══════════════════════════════════════════ -->
   <footer>
     <p>With love, Aaron &amp; Brooke &nbsp;·&nbsp; April 24, 2027</p>
   </footer>
+
+  <!-- ══════════════════════════════════════════
+       JAVASCRIPT — Slideshow + Collage reveal
+  ══════════════════════════════════════════ -->
+  <script>
+    // ── SLIDESHOW ──────────────────────────────
+    const slides    = document.querySelectorAll('.slide');
+    const dotsWrap  = document.getElementById('slideDots');
+    let current     = 0;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+
+    function goTo(n) {
+      slides[current].classList.remove('active');
+      dotsWrap.children[current].classList.remove('active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dotsWrap.children[current].classList.add('active');
+    }
+
+    // Auto-advance every 4 seconds
+    setInterval(() => goTo(current + 1), 4000);
+
+    // ── COLLAGE BG — show on scroll past hero ──
+    const hero      = document.getElementById('hero');
+    const collageBg = document.getElementById('collageBg');
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          collageBg.classList.add('visible');
+        } else {
+          collageBg.classList.remove('visible');
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(hero);
+  </script>
 
 </body>
 </html>
