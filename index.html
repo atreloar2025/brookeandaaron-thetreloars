@@ -15,7 +15,7 @@
   ══════════════════════════════════════════ -->
   <div class="collage" id="collage">
 
-    <!-- 5 panels side by side, each photo fully visible -->
+    <!-- 5 visible panels — photos rotate in and out via JavaScript -->
     <div class="collage-panel"><img src="brookeaarontopleft.jpg"             alt="" /></div>
     <div class="collage-panel"><img src="brookeaaroncenter.jpg"              alt="" /></div>
     <div class="collage-panel"><img src="brookeaarontopright.jpg"            alt="" /></div>
@@ -145,34 +145,59 @@
   </footer>
 
   <script>
-    // As you scroll down, the blur and tint increase smoothly
-    const blur  = document.getElementById('collageBlur');
-    const tint  = document.getElementById('collageTint');
-    const vh    = window.innerHeight;
+    // All 13 photos in the pool
+    const photos = [
+      "brookeaarontopleft.jpg",
+      "brookeaaroncenter.jpg",
+      "brookeaarontopright.jpg",
+      "brookeaaronbottomleft.jpg",
+      "brookeandaaronbottomright_new.jpeg",
+      "collage1.jpg",
+      "collage2.jpg",
+      "collage3.jpg",
+      "collage4.jpg",
+      "collage5.jpg",
+      "collage6.jpg",
+      "collage7.jpg",
+      "collage8.jpg"
+    ];
 
-    window.addEventListener('scroll', () => {
-      // progress: 0 at top, 1 after scrolling one full screen height
-      const progress = Math.min(window.scrollY / vh, 1);
-
-      // Blur goes from 0px to 16px
-      blur.style.backdropFilter  = `blur(${progress * 16}px)`;
-      blur.style.webkitBackdropFilter = `blur(${progress * 16}px)`;
-      blur.style.opacity = progress;
-
-      // Tint goes from 0 to 0.55 opacity
-      tint.style.opacity = progress * 0.55;
-    });
-
-    // Rotate which photo is highlighted every 3 seconds
-    const panels = document.querySelectorAll('.collage-panel');
-    let active = 0;
-    panels[active].classList.add('active');
+    const panels = document.querySelectorAll('.collage-panel img');
+    const numPanels = panels.length; // 5
+    let photoIndex = numPanels; // next photo to swap in (start after initial 5)
+    let panelIndex = 0;         // which panel to swap next
 
     setInterval(() => {
-      panels[active].classList.remove('active');
-      active = (active + 1) % panels.length;
-      panels[active].classList.add('active');
-    }, 3000);
+      const panel = panels[panelIndex];
+
+      // Fade out
+      panel.style.transition = 'opacity 0.8s ease';
+      panel.style.opacity = '0';
+
+      setTimeout(() => {
+        // Swap the image
+        panel.src = photos[photoIndex % photos.length];
+        // Fade back in
+        panel.style.opacity = '1';
+      }, 800);
+
+      photoIndex = (photoIndex + 1) % photos.length;
+      panelIndex = (panelIndex + 1) % numPanels;
+
+    }, 2500); // swap a new panel every 2.5 seconds
+
+    // Scroll blur/tint
+    const blur = document.getElementById('collageBlur');
+    const tint = document.getElementById('collageTint');
+    const vh   = window.innerHeight;
+
+    window.addEventListener('scroll', () => {
+      const progress = Math.min(window.scrollY / vh, 1);
+      blur.style.backdropFilter = `blur(${progress * 16}px)`;
+      blur.style.webkitBackdropFilter = `blur(${progress * 16}px)`;
+      blur.style.opacity = progress;
+      tint.style.opacity = progress * 0.55;
+    });
   </script>
 
 </body>
