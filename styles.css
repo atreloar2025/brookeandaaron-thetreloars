@@ -61,6 +61,7 @@ nav {
   display: flex;
   gap: 2rem;
   list-style: none;
+  align-items: center;
 }
 
 .nav-links a {
@@ -92,6 +93,72 @@ nav {
 
 .nav-links a:hover::after {
   width: 100%;
+}
+
+/* ── HOME DROPDOWN ───────────────────────────────────────── */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-toggle {
+  cursor: pointer;
+}
+
+/* Hidden by default, appears on hover */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  background: rgba(250, 247, 242, 0.98);
+  border: 1px solid rgba(193, 101, 74, 0.2);
+  list-style: none;
+  min-width: 200px;
+  box-shadow: 0 8px 24px rgba(107, 66, 38, 0.10);
+  z-index: 200;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--charcoal);
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+
+.dropdown-menu li a:hover {
+  background: rgba(193, 101, 74, 0.08);
+  color: var(--terra-cotta);
+}
+
+/* No underline animation inside the dropdown */
+.dropdown-menu li a::after {
+  display: none;
+}
+
+/* Show on hover */
+.nav-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* ── RSVP BUTTON IN NAV ──────────────────────────────────── */
+.nav-rsvp {
+  padding: 0.45rem 1.2rem !important;
+  border: 1px solid var(--terra-cotta);
+  color: var(--terra-cotta) !important;
+  transition: background 0.25s, color 0.25s !important;
+}
+
+.nav-rsvp:hover {
+  background: var(--terra-cotta);
+  color: var(--cream) !important;
+}
+
+.nav-rsvp::after {
+  display: none !important;
 }
 
 /* ── HERO ──────────────────────────────────────────────────── */
@@ -163,13 +230,21 @@ nav {
   opacity: 0.4;
 }
 
-/* Shows as soon as src is provided */
+/* Fills the slot — crops to cover, no stretching */
 .photo-slot img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Hide placeholder icon/label once a real image is loaded */
+.photo-slot img[src]:not([src=""]) ~ svg,
+.photo-slot img[src]:not([src=""]) ~ span {
+  display: none;
 }
 
 /* ── HERO TEXT ───────────────────────────────────────────── */
@@ -351,6 +426,13 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.venue-slot img[src]:not([src=""]) ~ svg,
+.venue-slot img[src]:not([src=""]) ~ span {
+  display: none;
 }
 
 /* ── BACK TO TOP ─────────────────────────────────────────── */
