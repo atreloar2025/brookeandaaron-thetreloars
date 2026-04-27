@@ -242,6 +242,7 @@ section {
   margin: 0 auto 2rem;
   background: rgba(250, 247, 242, 0.92);
   backdrop-filter: blur(4px);
+  text-align: center;
 }
 
 .section-label {
@@ -286,6 +287,7 @@ section {
   line-height: 1.85;
   color: var(--light-text);
   font-weight: 300;
+  text-align: center;
 }
 
 .placeholder-section {
@@ -300,7 +302,7 @@ section {
 }
 
 /* ── VENUE ───────────────────────────────────────────────── */
-#venue { max-width: 1000px; }
+#venue { max-width: 1000px; text-align: center; }
 
 .venue-info {
   background: rgba(255,255,255,0.5);
