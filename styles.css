@@ -241,9 +241,10 @@ nav {
   display: block;
 }
 
-/* Top left — shift down to show faces not top of image */
+/* Top left — zoomed out to show full photo */
 .hero-photo-grid .photo-slot:nth-child(1) img {
-  object-position: center 70%;
+  object-fit: contain;
+  object-position: center center;
 }
 
 /* Center tall — frame the couple kissing */
@@ -251,8 +252,9 @@ nav {
   object-position: center 60%;
 }
 
-/* Top right — faces are in center, default is fine */
+/* Top right — zoomed out to show full photo */
 .hero-photo-grid .photo-slot:nth-child(3) img {
+  object-fit: contain;
   object-position: center center;
 }
 
