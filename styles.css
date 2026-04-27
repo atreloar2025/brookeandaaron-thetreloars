@@ -241,6 +241,31 @@ nav {
   display: block;
 }
 
+/* Top left — shift down to show faces not top of image */
+.hero-photo-grid .photo-slot:nth-child(1) img {
+  object-position: center 70%;
+}
+
+/* Center tall — frame the couple kissing */
+.hero-photo-grid .photo-slot:nth-child(2) img {
+  object-position: center 60%;
+}
+
+/* Top right — faces are in center, default is fine */
+.hero-photo-grid .photo-slot:nth-child(3) img {
+  object-position: center center;
+}
+
+/* Bottom left — selfie, center is fine */
+.hero-photo-grid .photo-slot:nth-child(4) img {
+  object-position: center center;
+}
+
+/* Bottom right — center */
+.hero-photo-grid .photo-slot:nth-child(5) img {
+  object-position: center center;
+}
+
 /* Hide placeholder icon/label once a real image is loaded */
 .photo-slot img[src]:not([src=""]) ~ svg,
 .photo-slot img[src]:not([src=""]) ~ span {
