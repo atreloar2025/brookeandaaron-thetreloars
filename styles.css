@@ -188,7 +188,7 @@ nav {
 .hero-photo-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 200px 200px;
+  grid-template-rows: 300px 300px;
   gap: 12px;
   width: min(900px, 90vw);
   margin-bottom: 3rem;
@@ -241,9 +241,8 @@ nav {
   display: block;
 }
 
-/* Top left — zoomed out to show full photo */
+/* Top left */
 .hero-photo-grid .photo-slot:nth-child(1) img {
-  object-fit: contain;
   object-position: center center;
 }
 
@@ -252,18 +251,17 @@ nav {
   object-position: center 60%;
 }
 
-/* Top right — zoomed out to show full photo */
+/* Top right */
 .hero-photo-grid .photo-slot:nth-child(3) img {
-  object-fit: contain;
   object-position: center center;
 }
 
-/* Bottom left — selfie, center is fine */
+/* Bottom left */
 .hero-photo-grid .photo-slot:nth-child(4) img {
   object-position: center center;
 }
 
-/* Bottom right — center */
+/* Bottom right */
 .hero-photo-grid .photo-slot:nth-child(5) img {
   object-position: center center;
 }
