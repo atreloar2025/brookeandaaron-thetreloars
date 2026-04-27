@@ -187,7 +187,7 @@ nav {
 /* ── HERO PHOTO GRID ─────────────────────────────────────── */
 .hero-photo-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1.6fr 1fr;
   grid-template-rows: 400px 400px;
   gap: 12px;
   width: min(900px, 90vw);
@@ -246,9 +246,9 @@ nav {
   object-position: center 80%;
 }
 
-/* Center tall — frame the couple kissing */
+/* Center tall — shift right to show both faces */
 .hero-photo-grid .photo-slot:nth-child(2) img {
-  object-position: center 60%;
+  object-position: 70% 60%;
 }
 
 /* Top right — shift up slightly to show full bodies */
