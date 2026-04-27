@@ -40,9 +40,9 @@
         <ul class="dropdown-menu">
           <li><a href="#about">About the Couple</a></li>
           <li><a href="#venue">Venue</a></li>
-          <li><a href="#save-the-date">Save the Date</a></li>
           <li><a href="#registry">Wedding Registry</a></li>
           <li><a href="#photos">Photos</a></li>
+          <li><a href="#countdown">Countdown</a></li>
         </ul>
       </li>
       <li><a href="#rsvp" class="nav-rsvp">RSVP</a></li>
@@ -112,12 +112,6 @@
       </div>
     </section>
 
-    <section id="save-the-date">
-      <h2 class="section-title">Save the Date</h2>
-      <div class="divider"><span class="divider-icon">✦</span></div>
-      <div class="placeholder-section">Our wedding will be at the Cabrillo Pavilion</div>
-    </section>
-
     <section id="registry">
       <h2 class="section-title">Wedding Registry</h2>
       <div class="divider"><span class="divider-icon">✦</span></div>
@@ -128,6 +122,34 @@
       <h2 class="section-title">Photos</h2>
       <div class="divider"><span class="divider-icon">✦</span></div>
       <div class="placeholder-section">Your photo gallery will go here — engagement photos, getting-ready shots, and wedding day memories.</div>
+    </section>
+
+    <section id="countdown">
+      <span class="section-label">The Big Day</span>
+      <h2 class="section-title">Counting Down</h2>
+      <div class="divider"><span class="divider-icon">✦</span></div>
+      <div class="countdown-wrap">
+        <div class="countdown-block">
+          <span class="countdown-number" id="cd-days">--</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-block">
+          <span class="countdown-number" id="cd-hours">--</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-block">
+          <span class="countdown-number" id="cd-minutes">--</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-block">
+          <span class="countdown-number" id="cd-seconds">--</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+      <p class="countdown-caption">Until we say "I do" — April 24, 2027 · 5:00 PM · Santa Barbara, CA</p>
     </section>
 
     <section id="rsvp">
@@ -186,7 +208,33 @@
 
     }, 2500); // swap a new panel every 2.5 seconds
 
-    // Scroll blur/tint
+    // Countdown to April 24, 2027 at 5:00 PM Pacific
+    function updateCountdown() {
+      const wedding = new Date('April 24, 2027 17:00:00 GMT-0700');
+      const now     = new Date();
+      const diff    = wedding - now;
+
+      if (diff <= 0) {
+        document.getElementById('cd-days').textContent    = '0';
+        document.getElementById('cd-hours').textContent   = '0';
+        document.getElementById('cd-minutes').textContent = '0';
+        document.getElementById('cd-seconds').textContent = '0';
+        return;
+      }
+
+      const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('cd-days').textContent    = String(days).padStart(3, '0');
+      document.getElementById('cd-hours').textContent   = String(hours).padStart(2, '0');
+      document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
     const blur = document.getElementById('collageBlur');
     const tint = document.getElementById('collageTint');
     const vh   = window.innerHeight;
