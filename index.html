@@ -10,7 +10,27 @@
 <body id="top">
 
   <!-- ══════════════════════════════════════════
-       STICKY NAV
+       ROTATING COLLAGE — fixed to screen always
+       Unblurred at top, blurs as you scroll down
+  ══════════════════════════════════════════ -->
+  <div class="collage" id="collage">
+
+    <!-- 5 panels side by side, each photo fully visible -->
+    <div class="collage-panel"><img src="brookeaarontopleft.jpg"             alt="" /></div>
+    <div class="collage-panel"><img src="brookeaaroncenter.jpg"              alt="" /></div>
+    <div class="collage-panel"><img src="brookeaarontopright.jpg"            alt="" /></div>
+    <div class="collage-panel"><img src="brookeaaronbottomleft.jpg"          alt="" /></div>
+    <div class="collage-panel"><img src="brookeandaaronbottomright_new.jpeg" alt="" /></div>
+
+    <!-- Blur overlay — increases as you scroll -->
+    <div class="collage-blur" id="collageBlur"></div>
+
+    <!-- Dark tint so content is always readable when scrolled -->
+    <div class="collage-tint" id="collageTint"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       NAV
   ══════════════════════════════════════════ -->
   <nav>
     <span class="nav-monogram">A &amp; B</span>
@@ -30,47 +50,16 @@
   </nav>
 
   <!-- ══════════════════════════════════════════
-       BLURRED COLLAGE BACKGROUND
-       Shown behind content sections on scroll
+       HERO TEXT — sits above the collage
   ══════════════════════════════════════════ -->
-  <div class="collage-bg" id="collageBg">
-    <!--
-      These 6 slots tile the entire screen with your photos,
-      blurred and darkened so content stays readable.
-      Add/change images here to update the background collage.
-    -->
-    <div class="collage-bg-slot"><img src="brookeaarontopleft.jpg"     alt="" /></div>
-    <div class="collage-bg-slot"><img src="brookeaaroncenter.jpg"      alt="" /></div>
-    <div class="collage-bg-slot"><img src="brookeaarontopright.jpg"    alt="" /></div>
-    <div class="collage-bg-slot"><img src="brookeaaronbottomleft.jpg"  alt="" /></div>
-    <div class="collage-bg-slot"><img src="brookeaaroncenter.jpg"      alt="" /></div>
-    <div class="collage-bg-slot"><img src="brookeaaronbottomright.jpg" alt="" /></div>
+  <div class="hero-text-wrap">
+    <p class="hero-eyebrow">We're getting married</p>
+    <h1 class="hero-names">Aaron <span>&amp;</span> Brooke</h1>
+    <p class="hero-date">April 24, 2027 &nbsp;·&nbsp; Santa Barbara, California</p>
   </div>
 
   <!-- ══════════════════════════════════════════
-       HERO — FULL WIDTH 5-PANEL COLLAGE
-  ══════════════════════════════════════════ -->
-  <header class="hero" id="hero">
-
-    <div class="hero-collage">
-      <div class="hero-panel"><img src="brookeaarontopleft.jpg"              alt="Aaron and Brooke at the baseball field" /></div>
-      <div class="hero-panel"><img src="brookeaaroncenter.jpg"               alt="Aaron and Brooke on the boat at sunset" /></div>
-      <div class="hero-panel"><img src="brookeaarontopright.jpg"             alt="Aaron and Brooke at soccer game" /></div>
-      <div class="hero-panel"><img src="brookeaaronbottomleft.jpg"           alt="Aaron and Brooke at Ravens game" /></div>
-      <div class="hero-panel"><img src="brookeandaaronbottomright_new.jpeg"  alt="Aaron and Brooke in Halloween costumes" /></div>
-    </div>
-
-    <!-- Names & Date overlaid at the bottom -->
-    <div class="hero-text">
-      <p class="hero-eyebrow">We're getting married</p>
-      <h1 class="hero-names">Aaron <span>&amp;</span> Brooke</h1>
-      <p class="hero-date">April 24, 2027 &nbsp;·&nbsp; Santa Barbara, California</p>
-    </div>
-
-  </header>
-
-  <!-- ══════════════════════════════════════════
-       CONTENT SECTIONS
+       CONTENT — scrolls over the blurred collage
   ══════════════════════════════════════════ -->
   <div class="content-wrap">
 
@@ -96,12 +85,12 @@
       </div>
       <div class="venue-photo-grid">
         <div class="venue-slot">
-          <img src="cabrillo2.jpg" alt="Cabrillo Pavilion exterior from the beach" />
+          <img src="cabrillo2.jpg" alt="Cabrillo Pavilion exterior" />
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
           <span>Venue — Main View</span>
         </div>
         <div class="venue-slot">
-          <img src="cabrillo1.jpg" alt="Cabrillo Pavilion ballroom interior" />
+          <img src="cabrillo1.jpg" alt="Ballroom interior" />
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
           <span>Ballroom Interior</span>
         </div>
@@ -126,58 +115,64 @@
     <section id="save-the-date">
       <h2 class="section-title">Save the Date</h2>
       <div class="divider"><span class="divider-icon">✦</span></div>
-      <div class="placeholder-section">
-        Our wedding will be at the Cabrillo Pavilion
-      </div>
+      <div class="placeholder-section">Our wedding will be at the Cabrillo Pavilion</div>
     </section>
 
     <section id="registry">
       <h2 class="section-title">Wedding Registry</h2>
       <div class="divider"><span class="divider-icon">✦</span></div>
-      <div class="placeholder-section">
-        Registry links will appear here!
-      </div>
+      <div class="placeholder-section">Registry links will appear here!</div>
     </section>
 
     <section id="photos">
       <h2 class="section-title">Photos</h2>
       <div class="divider"><span class="divider-icon">✦</span></div>
-      <div class="placeholder-section">
-        Your photo gallery will go here — engagement photos, getting-ready shots, and wedding day memories.
-      </div>
+      <div class="placeholder-section">Your photo gallery will go here — engagement photos, getting-ready shots, and wedding day memories.</div>
     </section>
 
     <section id="rsvp">
       <h2 class="section-title">RSVP</h2>
       <div class="divider"><span class="divider-icon">✦</span></div>
-      <div class="placeholder-section">
-        RSVP form coming soon.
-      </div>
+      <div class="placeholder-section">RSVP form coming soon.</div>
     </section>
 
     <a href="#top" id="back-to-top">↑ &nbsp; Back to Top</a>
 
-  </div><!-- end .content-wrap -->
+  </div>
 
   <footer>
     <p>With love, Aaron &amp; Brooke &nbsp;·&nbsp; April 24, 2027</p>
   </footer>
 
-  <!-- ══════════════════════════════════════════
-       JAVASCRIPT — Collage bg reveal on scroll
-  ══════════════════════════════════════════ -->
   <script>
-    const hero      = document.getElementById('hero');
-    const collageBg = document.getElementById('collageBg');
+    // As you scroll down, the blur and tint increase smoothly
+    const blur  = document.getElementById('collageBlur');
+    const tint  = document.getElementById('collageTint');
+    const vh    = window.innerHeight;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        collageBg.classList.toggle('visible', !entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
+    window.addEventListener('scroll', () => {
+      // progress: 0 at top, 1 after scrolling one full screen height
+      const progress = Math.min(window.scrollY / vh, 1);
 
-    observer.observe(hero);
+      // Blur goes from 0px to 16px
+      blur.style.backdropFilter  = `blur(${progress * 16}px)`;
+      blur.style.webkitBackdropFilter = `blur(${progress * 16}px)`;
+      blur.style.opacity = progress;
+
+      // Tint goes from 0 to 0.55 opacity
+      tint.style.opacity = progress * 0.55;
+    });
+
+    // Rotate which photo is highlighted every 3 seconds
+    const panels = document.querySelectorAll('.collage-panel');
+    let active = 0;
+    panels[active].classList.add('active');
+
+    setInterval(() => {
+      panels[active].classList.remove('active');
+      active = (active + 1) % panels.length;
+      panels[active].classList.add('active');
+    }, 3000);
   </script>
 
 </body>
