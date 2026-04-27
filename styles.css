@@ -359,6 +359,58 @@ section {
 .venue-slot img[src]:not([src=""]) ~ svg,
 .venue-slot img[src]:not([src=""]) ~ span { display: none; }
 
+/* ── COUNTDOWN ───────────────────────────────────────────── */
+.countdown-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 2rem 0 1.5rem;
+  flex-wrap: wrap;
+}
+
+.countdown-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 80px;
+}
+
+.countdown-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 300;
+  color: var(--charcoal);
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.countdown-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--terra-cotta);
+}
+
+.countdown-sep {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  padding-bottom: 1.5rem;
+}
+
+.countdown-caption {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--light-text);
+  margin-top: 0.5rem;
+}
+
 /* ── BACK TO TOP ─────────────────────────────────────────── */
 #back-to-top {
   display: block;
