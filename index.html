@@ -48,46 +48,24 @@
   </div>
 
   <!-- ══════════════════════════════════════════
-       HERO — FULLSCREEN SLIDESHOW
+       HERO — FULL WIDTH 5-PANEL COLLAGE
   ══════════════════════════════════════════ -->
   <header class="hero" id="hero">
 
-    <!-- Slideshow — photos rotate every 4 seconds -->
-    <div class="slideshow" id="slideshow">
-      <!--
-        Each .slide holds one photo fullscreen.
-        Add more slides by copying a .slide div and changing the src.
-        Photos fill the screen edge to edge with object-fit: cover.
-      -->
-      <div class="slide active">
-        <img src="brookeaarontopleft.jpg" alt="Aaron and Brooke" />
-      </div>
-      <div class="slide">
-        <img src="brookeaaroncenter.jpg" alt="Aaron and Brooke" />
-      </div>
-      <div class="slide">
-        <img src="brookeaarontopright.jpg" alt="Aaron and Brooke" />
-      </div>
-      <div class="slide">
-        <img src="brookeaaronbottomleft.jpg" alt="Aaron and Brooke" />
-      </div>
-      <div class="slide">
-        <img src="brookeaaronbottomright.jpg" alt="Aaron and Brooke" />
-      </div>
+    <div class="hero-collage">
+      <div class="hero-panel"><img src="brookeaarontopleft.jpg"              alt="Aaron and Brooke at the baseball field" /></div>
+      <div class="hero-panel"><img src="brookeaaroncenter.jpg"               alt="Aaron and Brooke on the boat at sunset" /></div>
+      <div class="hero-panel"><img src="brookeaarontopright.jpg"             alt="Aaron and Brooke at soccer game" /></div>
+      <div class="hero-panel"><img src="brookeaaronbottomleft.jpg"           alt="Aaron and Brooke at Ravens game" /></div>
+      <div class="hero-panel"><img src="brookeandaaronbottomright_new.jpeg"  alt="Aaron and Brooke in Halloween costumes" /></div>
     </div>
 
-    <!-- Dark overlay -->
-    <div class="slideshow-overlay"></div>
-
-    <!-- Names & Date over the slideshow -->
+    <!-- Names & Date overlaid at the bottom -->
     <div class="hero-text">
       <p class="hero-eyebrow">We're getting married</p>
       <h1 class="hero-names">Aaron <span>&amp;</span> Brooke</h1>
       <p class="hero-date">April 24, 2027 &nbsp;·&nbsp; Santa Barbara, California</p>
     </div>
-
-    <!-- Dot indicators -->
-    <div class="slide-dots" id="slideDots"></div>
 
   </header>
 
@@ -186,44 +164,15 @@
   </footer>
 
   <!-- ══════════════════════════════════════════
-       JAVASCRIPT — Slideshow + Collage reveal
+       JAVASCRIPT — Collage bg reveal on scroll
   ══════════════════════════════════════════ -->
   <script>
-    // ── SLIDESHOW ──────────────────────────────
-    const slides    = document.querySelectorAll('.slide');
-    const dotsWrap  = document.getElementById('slideDots');
-    let current     = 0;
-
-    // Build dots
-    slides.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
-      dot.addEventListener('click', () => goTo(i));
-      dotsWrap.appendChild(dot);
-    });
-
-    function goTo(n) {
-      slides[current].classList.remove('active');
-      dotsWrap.children[current].classList.remove('active');
-      current = (n + slides.length) % slides.length;
-      slides[current].classList.add('active');
-      dotsWrap.children[current].classList.add('active');
-    }
-
-    // Auto-advance every 4 seconds
-    setInterval(() => goTo(current + 1), 4000);
-
-    // ── COLLAGE BG — show on scroll past hero ──
     const hero      = document.getElementById('hero');
     const collageBg = document.getElementById('collageBg');
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting) {
-          collageBg.classList.add('visible');
-        } else {
-          collageBg.classList.remove('visible');
-        }
+        collageBg.classList.toggle('visible', !entry.isIntersecting);
       },
       { threshold: 0.1 }
     );
