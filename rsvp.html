@@ -59,7 +59,9 @@
     });
 
     document.querySelectorAll('.dropdown-menu a').forEach(link => {
-      link.addEventListener('click', () => dropdown.classList.remove('open'));
+      link.addEventListener('click', () => {
+        setTimeout(() => dropdown.classList.remove('open'), 150);
+      });
     });
   </script>
 

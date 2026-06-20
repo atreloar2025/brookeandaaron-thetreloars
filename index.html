@@ -249,9 +249,11 @@
       }
     });
 
-    // Close the dropdown after picking a link inside it
+    // Close the dropdown shortly AFTER navigating, so the tap isn't cancelled
     document.querySelectorAll('.dropdown-menu a').forEach(link => {
-      link.addEventListener('click', () => dropdown.classList.remove('open'));
+      link.addEventListener('click', () => {
+        setTimeout(() => dropdown.classList.remove('open'), 150);
+      });
     });
   </script>
 
