@@ -33,7 +33,7 @@
        NAV
   ══════════════════════════════════════════ -->
   <nav>
-    <span class="nav-monogram">A &amp; B</span>
+    <a href="#top" class="nav-monogram">A &amp; B</a>
     <ul class="nav-links">
       <li class="nav-dropdown">
         <a href="#top" class="nav-dropdown-toggle">Home ▾</a>
@@ -231,6 +231,27 @@
       blur.style.webkitBackdropFilter = `blur(${progress * 16}px)`;
       blur.style.opacity = progress;
       tint.style.opacity = progress * 0.55;
+    });
+
+    // Dropdown — tap to open/close on mobile, hover still works on desktop
+    const dropdown = document.querySelector('.nav-dropdown');
+    const toggle   = document.querySelector('.nav-dropdown-toggle');
+
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault(); // stop "Home" from jumping to top and closing the menu
+      dropdown.classList.toggle('open');
+    });
+
+    // Close the dropdown if you tap anywhere else on the page
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('open');
+      }
+    });
+
+    // Close the dropdown after picking a link inside it
+    document.querySelectorAll('.dropdown-menu a').forEach(link => {
+      link.addEventListener('click', () => dropdown.classList.remove('open'));
     });
   </script>
 

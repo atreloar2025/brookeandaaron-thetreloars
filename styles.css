@@ -169,7 +169,8 @@ nav {
 
 .dropdown-menu li a:hover { background: rgba(193, 101, 74, 0.08); color: var(--terra-cotta); }
 .dropdown-menu li a::after { display: none; }
-.nav-dropdown:hover .dropdown-menu { display: block; }
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown.open .dropdown-menu { display: block; }
 
 .nav-rsvp {
   padding: 0.45rem 1.4rem !important;

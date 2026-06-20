@@ -13,7 +13,7 @@
        NAV
   ══════════════════════════════════════════ -->
   <nav>
-    <span class="nav-monogram">A &amp; B</span>
+    <a href="index.html" class="nav-monogram">A &amp; B</a>
     <ul class="nav-links">
       <li class="nav-dropdown">
         <a href="index.html" class="nav-dropdown-toggle">Home ▾</a>
@@ -41,6 +41,27 @@
       </div>
     </section>
   </div>
+
+  <script>
+    // Dropdown — tap to open/close on mobile, hover still works on desktop
+    const dropdown = document.querySelector('.nav-dropdown');
+    const toggle   = document.querySelector('.nav-dropdown-toggle');
+
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      dropdown.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('open');
+      }
+    });
+
+    document.querySelectorAll('.dropdown-menu a').forEach(link => {
+      link.addEventListener('click', () => dropdown.classList.remove('open'));
+    });
+  </script>
 
 </body>
 </html>
