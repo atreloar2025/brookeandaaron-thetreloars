@@ -172,9 +172,10 @@ nav {
 .nav-dropdown:hover .dropdown-menu { display: block; }
 
 .nav-rsvp {
-  padding: 0.45rem 1.2rem !important;
+  padding: 0.45rem 1.4rem !important;
   border: 1px solid var(--terra-cotta);
   color: var(--terra-cotta) !important;
+  white-space: nowrap;
   transition: background 0.25s, color 0.25s !important;
 }
 .nav-rsvp:hover { background: var(--terra-cotta); color: var(--cream) !important; }
